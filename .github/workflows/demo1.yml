@@ -1,3 +1,4 @@
+# 1- Execute action to print "Hello World " on push
 # name: hello-world
 # 'on': push
 # jobs:
@@ -6,17 +7,45 @@
 #     steps:
 #       - name: my-step
 #         run: echo "Hello World!"
-name: React CI
-'on': push
+# 2- workflow flow {text,npm install,and build}
+# name: React CI
+# 'on': push
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         node-version:
+#           - 15.x
+#     steps:
+#       - uses: actions/checkout@v1
+#       - run: npm install
+#       - run: npm run build
+#       - run: npm test
+#3-Actions to lint using pretier
+name: Lint
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
-  build:
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version:
-          - 15.x
     steps:
-      - uses: actions/checkout@v1
-      - run: npm install
-      - run: npm run build
-      - run: npm test
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true
