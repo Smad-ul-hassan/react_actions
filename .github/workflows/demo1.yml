@@ -23,28 +23,39 @@
 #       - run: npm run build
 #       - run: npm test
 #3-Actions to lint using pretier
-name: Lint
-'on':
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+# name: Lint
+# 'on':
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
+# jobs:
+#   run-linters:
+#     name: Run linters
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         node-version:
+#           - 15.x
+#     steps:
+#       - name: Check out Git repository
+#         uses: actions/checkout@v1
+#       - name: Run linters
+#         uses: wearerequired/lint-action@v1
+#         with:
+#           eslint: true
+#           prettier: true
+name: Prettier
+on: [push, pull_request]
 jobs:
-  run-linters:
-    name: Run linters
+  prettier:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version:
-          - 15.x
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v1
-      - name: Run linters
-        uses: wearerequired/lint-action@v1
-        with:
-          eslint: true
-          prettier: true
-
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run prettier
+        run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,md}" && echo "Prettier check passed"
