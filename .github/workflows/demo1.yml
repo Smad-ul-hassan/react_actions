@@ -1,8 +1,22 @@
-name: hello-world
+# name: hello-world
+# 'on': push
+# jobs:
+#   my-job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: my-step
+#         run: echo "Hello World!"
+name: React CI
 'on': push
 jobs:
-  my-job:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 15.x
     steps:
-      - name: my-step
-        run: echo "Hello World!"
+      - uses: actions/checkout@v1
+      - run: npm install
+      - run: npm run build
+      - run: npm test
