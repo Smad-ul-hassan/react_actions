@@ -56,6 +56,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: npm install
+        run: npm install 
       - name: Run prettier
         run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,md}" && echo "Prettier check passed"
