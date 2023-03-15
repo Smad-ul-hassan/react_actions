@@ -76,7 +76,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Run prettier
-        run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,md}" && echo "Prettier check 
+        run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,md}" && echo "Prettier check" 
       - name: Format code
         run: npm run format
     
