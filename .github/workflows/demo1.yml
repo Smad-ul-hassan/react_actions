@@ -49,32 +49,16 @@
 #           prettier: true
 
 
+name: Prettier
 # name: Prettier
-# on: [push, pull_request]
-# jobs:
-#   prettier:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-#       - name: Install dependencies
-#         run: npm install 
-#       - name: Run prettier
-#         run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,md}" && echo "Prettier check passed"
-
-name: Format code
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
 jobs:
-  format:
+  prettier:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: npm install
-        run: npm run format
-      - name: Check formatting
-        run: npm run check-formatting
-    
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install 
+      - name: Run prettier
+        run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,md}" && echo "Prettier check passed"
