@@ -62,7 +62,7 @@
 #       - name: Run prettier
 #         run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,md}" && echo "Prettier check passed"
 
-name: Format code
+ name: Format code
 on:
   push:
     branches:
