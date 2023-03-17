@@ -49,16 +49,30 @@
 #           prettier: true
 
 
-name: Prettier
 # name: Prettier
-on: [push, pull_request]
+# # name: Prettier
+# on: [push, pull_request]
+# jobs:
+#   prettier:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#       - name: Install dependencies
+#         run: npm install 
+#       - name: Run prettier
+#         run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,md}" && echo "Prettier check passed"
+
+
+
+name: PR Created
+on:
+  pull_request:
+    types: [opened]
+
 jobs:
-  prettier:
+  pr_created:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install 
-      - name: Run prettier
-        run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,md}" && echo "Prettier check passed"
+      - name: Run command on PR creation
+        run: echo "Hello, world!"
