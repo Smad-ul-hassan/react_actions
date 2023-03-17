@@ -1,27 +1,27 @@
 # 1- Execute action to print "Hello World " on push
-name: hello-world
-'on': push
-jobs:
-  my-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: my-step
-        run: echo "Hello World!"
-# 2- workflow flow {text,npm install,and build}
-# name: React CI
+# name: hello-world
 # 'on': push
 # jobs:
-#   build:
+#   my-job:
 #     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         node-version:
-#           - 15.x
 #     steps:
-#       - uses: actions/checkout@v1
-#       - run: npm install
-#       - run: npm run build
-#       - run: npm test
+#       - name: my-step
+#         run: echo "Hello World!"
+# 2- workflow flow {text,npm install,and build}
+name: React CI dfjklsl
+'on': push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 15.x
+    steps:
+      - uses: actions/checkout@v1
+      - run: npm install
+      - run: npm run build
+      - run: npm test
 #3-Actions to lint using pretier
 # name: Lint
 # 'on':
