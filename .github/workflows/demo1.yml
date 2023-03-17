@@ -65,15 +65,29 @@
 
 
 
-name: PR Created
-on:
-  pull_request:
-    types: [opened]
+# name: PR Created
+# on:
+#   pull_request:
+#     types: [opened]
 
-jobs:
-  pr_created:
+# jobs:
+#   pr_created:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Run command on PR creation
+#         # run: echo "Hello, world!"
+#         run: echo "Hello, world!"
+
+name: ESLint
+on:
+  push:
+    branches: [feature]
+jobs:  
+  eslint:
     runs-on: ubuntu-latest
     steps:
-      - name: Run command on PR creation
-        # run: echo "Hello, world!"
-        run: echo "Hello, world!"
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run ESLint
+        run: npx eslint .
