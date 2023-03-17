@@ -75,4 +75,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run command on PR creation
+        # run: echo "Hello, world!"
         run: echo "Hello, world!"
